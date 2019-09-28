@@ -4,6 +4,3 @@
 [submodule "backend/resources/assets/wetty"]
 	path = backend/resources/assets/wetty
 	url = https://github.com/butlerx/wetty.git
-[submodule "webssh2"]
-	path = webssh2
-	url = https://github.com/billchurch/webssh2.git
