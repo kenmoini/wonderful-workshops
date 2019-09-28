@@ -1,0 +1,6 @@
+[submodule "frontend/themes/hugo-theme-learn"]
+	path = frontend/themes/hugo-theme-learn
+	url = https://github.com/matcornic/hugo-theme-learn.git
+[submodule "backend/resources/assets/wetty"]
+	path = backend/resources/assets/wetty
+	url = https://github.com/butlerx/wetty.git

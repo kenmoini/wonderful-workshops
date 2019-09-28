@@ -1,0 +1,18 @@
+baseURL: http://example.org/
+languageCode: en-us
+title: "Fierce Software Workshops"
+theme: fiercesw-learn
+metaDataFormat: yaml
+
+params:
+  logo_title: "Fierce Software"
+  themeVariant: blue
+
+taxonomies:
+  workshop: workshops
+
+outputs:
+  home:
+   - HTML
+   - RSS
+   - JSON
