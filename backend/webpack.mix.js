@@ -1,5 +1,8 @@
 const mix = require('laravel-mix');
 
+
+//import { Terminal } from 'xterm';
+
 /*
  |--------------------------------------------------------------------------
  | Mix Asset Management
@@ -12,4 +15,5 @@ const mix = require('laravel-mix');
  */
 
 mix.js('resources/js/app.js', 'public/js')
+    .sourceMaps()
     .sass('resources/sass/app.scss', 'public/css');
