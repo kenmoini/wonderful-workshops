@@ -50,6 +50,7 @@ This will create...
 
 #### ***NOTE:*** I would advise securing that Route with whatever means you do.  SSH over an insecure web browser is...dumb.  I can't predict how your cluster terminates SSL though - cert-manager, certmonger, Let's Encrypt, edge load balancer termination, etc.
 
+You can use the service by sending a username/password Basic Auth request to ***ww-webssh2:8888/ssh/host/123.45.67.98***
 
 
 # WebSSH2
