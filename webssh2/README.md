@@ -1,4 +1,59 @@
+# Wonderful Workshops - WebSSH
+##### *[WebSSH](https://github.com/billchurch/webssh2) README below...*
+
+Welcome to the Wonderful Workshops' WebSSH client!
+
+This is deployed as a container, ideally on Red Hat OpenShift.  To do so, it exposes port 8888.
+
+It is built on [WebSSH](https://github.com/billchurch/webssh2) and can take Basic Auth requests to log users in which is perfect for an AJAX integration.
+
+Note that this is simply a terminal client that operates in your web browser.  To use this in the Wonderful Workshops platform you still need to also deploy the ***bastion-host*** component.
+
+## Usage
+
+### Build from Dockerfile
+
+Should be pretty easy really, clone the repo, run docker build...
+
+```
+# git clone https://github.com/kenmoini/wonderful-workshops
+# cd wonderful-workshops/webssh2
+# docker build - < Dockerfile
+```
+
+Then run ```docker run``` and the image checksom of whatever was built.
+
+### Pull from Docker Hub
+
+Just want to use a pre-built and public container image?  Sure, no problem...
+
+```
+# docker run -p 8888:8888 kenmoini/wonderful-workshops-webssh:latest
+```
+
+Navigate to localhost:8888 to access the container.
+
+### Deploy to OpenShift
+
+One of those fancy fucks with an OCP cluster?  Dope - use the template in this repository to quickly deploy this same cluster.
+
+```
+# oc create -f https://raw.githubusercontent.com/kenmoini/wonderful-workshops/master/webssh2/openshift-template.yml
+# oc new-app ww-webssh2
+```
+
+This will create...
+
+- A Deployment Configuration that pulls in the container image from Docker Hub - version can be set with a parameter in the template
+- A Service that can be set via parameter
+- A Route to expose the Service
+
+#### ***NOTE:*** I would advise securing that Route with whatever means you do.  SSH over an insecure web browser is...dumb.  I can't predict how your cluster terminates SSL though - cert-manager, certmonger, Let's Encrypt, edge load balancer termination, etc.
+
+
+
 # WebSSH2
+
 [![GitHub version](https://badge.fury.io/gh/billchurch%2Fwebssh2.svg)](https://badge.fury.io/gh/billchurch%2Fwebssh2)
 
 [![Buy Me A Coffee](https://www.buymeacoffee.com/assets/img/custom_images/orange_img.png)](https://www.buymeacoffee.com/billchurch)
