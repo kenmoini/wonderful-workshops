@@ -30,7 +30,7 @@ RUN cat "$(which zsh)" >> /etc/shells && \
     wget -O oc.tar.gz "https://github.com/openshift/origin/releases/download/v3.11.0/openshift-origin-client-tools-v3.11.0-0cbc58b-linux-64bit.tar.gz" && \
     tar zxvf oc.tar.gz && cd openshift-origin-client-* && mv kubectl /usr/local/bin && mv oc /usr/local/bin && \
     newusers /tmp/working/user-list.txt && sh /tmp/working/batch-user-config.sh && \
-    rm -rf /tmp/working && \
+    rm -rf /tmp/working && chmod -R 777 /opt && \
     /etc/init.d/sshd start
 
 COPY sshd_config /etc/ssh/sshd_config
