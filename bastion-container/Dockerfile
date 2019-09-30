@@ -43,4 +43,4 @@ EXPOSE 2222
 EXPOSE 8989
 
 #CMD ["/usr/sbin/sshd", "-D"]
-#CMD ["sh", "/opt/start-server.sh"]
+CMD ["sh", "/opt/start-server.sh"]
