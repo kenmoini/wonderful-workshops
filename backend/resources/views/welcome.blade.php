@@ -85,12 +85,6 @@
             </div>
         </div>
     <script src="/js/app.js"></script>
-    <script src="0.js"></script>
-      <script>
-        var term = new Terminal();
-        term.open(document.getElementById('terminal'));
-        term.write('Hello from xterm')
-      </script>
 
     </body>
 </html>

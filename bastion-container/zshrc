@@ -1,0 +1,7 @@
+export PATH=$HOME/bin:$HOME/.composer/vendor/bin:$HOME/.local/bin:/usr/bin:/usr/local/bin:$PATH
+export ZSH="/home/USER_HERE/.oh-my-zsh"
+
+ZSH_THEME="agnoster"
+DISABLE_AUTO_UPDATE="true"
+plugins=(git ansible kubectl sudo thefuck)
+source $ZSH/oh-my-zsh.sh
