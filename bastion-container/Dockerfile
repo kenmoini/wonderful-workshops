@@ -30,12 +30,14 @@ RUN cat "$(which zsh)" >> /etc/shells && \
     wget -O oc.tar.gz "https://github.com/openshift/origin/releases/download/v3.11.0/openshift-origin-client-tools-v3.11.0-0cbc58b-linux-64bit.tar.gz" && \
     tar zxvf oc.tar.gz && cd openshift-origin-client-* && mv kubectl /usr/local/bin && mv oc /usr/local/bin && \
     newusers /tmp/working/user-list.txt && sh /tmp/working/batch-user-config.sh && \
-    rm -rf /tmp/working && chmod -R 777 /opt && \
+    rm -rf /tmp/working && chmod -R 777 /opt && cd / && npm install express && chmod 777 \
     /etc/init.d/sshd start
 
 COPY sshd_config /etc/ssh/sshd_config
 COPY server.js /opt/server.js
 COPY start-server.sh /opt/start-server.sh
+
+USER 1001
 
 EXPOSE 2222
 EXPOSE 8989

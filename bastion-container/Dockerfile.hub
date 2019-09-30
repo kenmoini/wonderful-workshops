@@ -31,6 +31,8 @@ COPY bastion-container/sshd_config /etc/ssh/sshd_config
 COPY bastion-container/server.js /opt/server.js
 COPY bastion-container/start-server.sh /opt/start-server.sh
 
+USER 1001
+
 EXPOSE 2222
 EXPOSE 8989
 
