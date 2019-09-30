@@ -126,11 +126,6 @@ app.disable('x-powered-by')
 // static files
 app.use(express.static(publicPath, expressOptions))
 
-app.get('/healthz', function (req, res, next) {
-  var r = req.headers.referer || '/'
-  res.status(200).send('<!DOCTYPE html><html><head><meta http-equiv="refresh" content="0; url=' + r + '"></head><body bgcolor="#000">ok</body></html>')
-})
-
 app.get('/reauth', function (req, res, next) {
   var r = req.headers.referer || '/'
   res.status(401).send('<!DOCTYPE html><html><head><meta http-equiv="refresh" content="0; url=' + r + '"></head><body bgcolor="#000"></body></html>')
@@ -194,5 +189,40 @@ io.use(function (socket, next) {
 
 // bring up socket
 io.on('connection', socket)
+
+//======================================================================
+// Simple Kubernetes/OpenShift Readiness/Liveliness Probe Server
+//======================================================================
+
+// Constants
+const k8sPORT = 8989;
+const k8sHOST = '0.0.0.0';
+const k8sPath = '/tmp/bad_health'; //If this file exists, the pod will stop accepting traffic
+
+// App
+const k8s = express();
+
+k8s.get('/', (req, res) => {
+  res.send('Hello world');
+});
+
+k8s.get('/health-check',(req,res)=> {
+  fs.access(k8sPath, fs.F_OK, (err) => {
+    if (err) {
+      res.send("ok");
+      return
+    }
+    res.status(500).send('unhealthy');
+  })
+});
+
+k8s.get('/bad-health',(req,res)=> {
+    res.status(500).send('unhealthy'); //If you want to force failure, point to this endpoint
+});
+
+k8s.listen(k8sPORT, k8sHOST);
+
+console.log("Running k8s health endpoint on http://" + k8sHOST + ":" + k8sPORT);
+
 
 module.exports = { server: server, config: config }
