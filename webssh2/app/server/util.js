@@ -8,6 +8,12 @@ var debug = require('debug')('WebSSH2')
 var Auth = require('basic-auth')
 
 exports.basicAuth = function basicAuth (req, res, next) {
+  
+  //Ignore Basic Auth for Kubernetes Health Check
+  if (req.path === '/healthz') {
+    return next();
+  }
+
   var myAuth = Auth(req)
   if (myAuth && myAuth.pass !== '') {
     req.session.username = myAuth.name
