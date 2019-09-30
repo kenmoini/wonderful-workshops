@@ -14,7 +14,7 @@ RUN yum update -y && yum clean all
 
 RUN yum install wget curl nano vim gcc gcc-c++ gcc-gfortran gettext initscripts openssh openssh-server openssh-server-sysvinit libtool patch git make ncurses-devel python3-pip python3 python3-setuptools python3-devel unzip ansible zsh -y && yum clean all
 
-RUN yum install -y epel-release && yum install nodejs npm -y && yum clean all
+RUN yum install -y epel-release && yum install nodejs npm -y && npm install -g express && yum clean all
 
 RUN cat "$(which zsh)" >> /etc/shells && \
     git clone https://github.com/powerline/fonts.git --depth=1 && \

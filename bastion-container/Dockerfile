@@ -15,7 +15,7 @@ RUN yum update -y && yum clean all
 
 RUN yum install wget curl nano vim gcc gcc-c++ gcc-gfortran gettext initscripts openssh openssh-server openssh-server-sysvinit libtool patch git make ncurses-devel python3-pip python3 python3-setuptools python3-devel unzip ansible zsh -y && yum clean all
 
-RUN yum install -y epel-release && yum install nodejs npm -y && yum clean all
+RUN yum install -y epel-release && yum install nodejs npm -y && npm install -g express && yum clean all
 
 # RH UBI doesn't come with ZSH as a yum package...
 #RUN wget -O zsh-5.7.1.tar.xz "https://downloads.sourceforge.net/project/zsh/zsh/5.7.1/zsh-5.7.1.tar.xz?r=https%3A%2F%2Fsourceforge.net%2Fprojects%2Fzsh%2Ffiles%2Fzsh%2F5.7.1%2Fzsh-5.7.1.tar.xz%2Fdownload&ts=1569732719" && \
