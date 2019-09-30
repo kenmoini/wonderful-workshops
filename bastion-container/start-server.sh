@@ -1,5 +1,5 @@
 #!/bin/bash
 
 /usr/sbin/sshd -D
-cd /opt && npm install express
+npm install --prefix /opt express
 node /opt/server.js
