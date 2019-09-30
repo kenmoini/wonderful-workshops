@@ -15,7 +15,7 @@ RUN yum update -y && yum clean all
 
 RUN yum install wget curl nano vim gcc gcc-c++ gcc-gfortran gettext initscripts openssh openssh-server openssh-server-sysvinit libtool patch git make ncurses-devel python3-pip python3 python3-setuptools python3-devel unzip ansible zsh -y && yum clean all
 
-RUN yum install -y epel-release && yum install nodejs npm -y && npm install -g express && yum clean all
+RUN yum install -y epel-release && yum install nodejs npm -y && yum clean all
 
 # RH UBI doesn't come with ZSH as a yum package...
 #RUN wget -O zsh-5.7.1.tar.xz "https://downloads.sourceforge.net/project/zsh/zsh/5.7.1/zsh-5.7.1.tar.xz?r=https%3A%2F%2Fsourceforge.net%2Fprojects%2Fzsh%2Ffiles%2Fzsh%2F5.7.1%2Fzsh-5.7.1.tar.xz%2Fdownload&ts=1569732719" && \
@@ -30,7 +30,7 @@ RUN cat "$(which zsh)" >> /etc/shells && \
     wget -O oc.tar.gz "https://github.com/openshift/origin/releases/download/v3.11.0/openshift-origin-client-tools-v3.11.0-0cbc58b-linux-64bit.tar.gz" && \
     tar zxvf oc.tar.gz && cd openshift-origin-client-* && mv kubectl /usr/local/bin && mv oc /usr/local/bin && \
     newusers /tmp/working/user-list.txt && sh /tmp/working/batch-user-config.sh && \
-    rm -rf /tmp/working && chmod -R 777 /opt && cd / && mkdir /.npm && npm install -g express && chmod -R 777 /.npm && \
+    rm -rf /tmp/working && chmod -R 777 /opt && mkdir /.npm && chmod -R 777 /.npm && \
     ssh-keygen -A
 
 COPY sshd_config /etc/ssh/sshd_config
