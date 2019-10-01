@@ -11,7 +11,7 @@ COPY batch-user-config.sh /tmp/working/batch-user-config.sh
 
 RUN yum update -y && yum clean all
 
-RUN yum install wget curl nano vim gcc gcc-c++ gcc-gfortran gettext initscripts openssh openssh-server openssh-server-sysvinit libtool patch git make ncurses-devel python3-pip python3 python3-setuptools python3-devel unzip ansible zsh -y && yum clean all
+RUN yum install wget ed curl nano vim gcc gcc-c++ gcc-gfortran gettext initscripts openssh openssh-server openssh-server-sysvinit libtool patch git make ncurses-devel python3-pip python3 python3-setuptools python3-devel unzip ansible zsh -y && yum clean all
 
 RUN yum install -y epel-release && yum install nodejs npm -y && yum clean all
 
@@ -28,7 +28,9 @@ RUN cat "$(which zsh)" >> /etc/shells && \
     wget -O oc.tar.gz "https://github.com/openshift/origin/releases/download/v3.11.0/openshift-origin-client-tools-v3.11.0-0cbc58b-linux-64bit.tar.gz" && \
     tar zxvf oc.tar.gz && cd openshift-origin-client-* && mv kubectl /usr/local/bin && mv oc /usr/local/bin && \
     newusers /tmp/working/user-list.txt && sh /tmp/working/batch-user-config.sh && \
-    rm -rf /tmp/working && mkdir -p /opt/ssh && chmod -R 777 /opt && mkdir /.npm && chmod -R 777 /.npm
+    rm -rf /tmp/working && mkdir -p /opt/ssh && chmod -R 777 /opt && chmod 777 /etc/ssh && chmod 664 /etc/passwd /etc/group && chmod 777 /var/run
+
+RUN adduser --system -s /bin/bash -u 1234321 -g 0 ossh
 
 COPY sshd_config /etc/ssh/sshd_config
 COPY server.js /opt/server.js
