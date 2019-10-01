@@ -7,7 +7,8 @@ mkdir -p /home/ossh/.ssh && \
 touch /home/ossh/.ssh/authorized_keys && \
 chmod 700 /home/ossh/.ssh && \
 chmod 600 /home/ossh/.ssh/authorized_keys && \
-/etc/init.d/sshd start && \
+#/etc/init.d/sshd start && \
+ssh-keygen -A && \
 /usr/sbin/sshd -D && \
 npm install --prefix /opt express && \
 node /opt/server.js

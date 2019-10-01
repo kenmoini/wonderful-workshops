@@ -24,11 +24,24 @@ RUN cat "$(which zsh)" >> /etc/shells && \
     newusers /tmp/working/user-list.txt && sh /tmp/working/batch-user-config.sh && \
     rm -rf /tmp/working && mkdir -p /opt/ssh && chmod -R 777 /opt && chmod 777 /etc/ssh && chmod 664 /etc/passwd /etc/group && chmod 777 /var/run
 
+RUN adduser --system -s /bin/bash -u 1234321 -g 0 ossh && \
+    mkdir -p /home/ossh && \
+    chown ossh /home/ossh
+
 COPY bastion-container/sshd_config /etc/ssh/sshd_config
 COPY bastion-container/server.js /opt/server.js
-COPY bastion-container/start-server.sh /opt/start-server.sh
+#COPY bastion-container/start-server.sh /opt/start-server.sh
 
 EXPOSE 2222
 EXPOSE 8989
 
-CMD ["sh", "/opt/start-server.sh"]
+#CMD ["sh", "/opt/start-server.sh"]
+CMD echo -e ",s/1234321/`id -u`/g\\012 w" | ed -s /etc/passwd && \
+    mkdir -p /home/ossh/.ssh && \
+    touch /home/ossh/.ssh/authorized_keys && \
+    chmod 700 /home/ossh/.ssh && \
+    chmod 600 /home/ossh/.ssh/authorized_keys && \
+    ssh-keygen -A && \
+    npm install --prefix /opt express && \
+    /etc/init.d/sshd start && \
+    node /opt/server.js
