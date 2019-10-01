@@ -48,7 +48,7 @@ objects:
           - name: CONTEXT_PATH
             value: /
           image: ' '
-          imagePullPolicy: IfNotPresent
+          imagePullPolicy: Always
           livenessProbe:
             exec:
               command:
