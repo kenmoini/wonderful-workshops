@@ -44,7 +44,6 @@ RUN adduser --system -s /bin/bash -u 1234321 -g 0 ossh && \
     mkdir -p /var/lock/subsys && \
     touch /var/lock/subsys/sshd && \
     chmod 777 /var/lock/subsys/sshd && \
-    chown ossh /etc/shadow && \
     chmod 600 /etc/shadow
 
 COPY sshd_config /etc/ssh/sshd_config
