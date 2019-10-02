@@ -33,7 +33,9 @@ RUN cat "$(which zsh)" >> /etc/shells && \
 RUN adduser --system -s /bin/bash -u 1234321 -g 0 ossh && \
     mkdir -p /home/ossh && \
     chown ossh /home/ossh && \
-    chmod 777 /home/ossh
+    chmod 777 /home/ossh && \
+    touch /var/lock/subsys/sshd && \
+    chmod 777 /var/lock/subsys/sshd
 
 COPY sshd_config /etc/ssh/sshd_config
 COPY server.js /opt/server.js
