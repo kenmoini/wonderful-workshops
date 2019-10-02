@@ -6,9 +6,9 @@ A few details...
 
 1) Built on CentOS.  Was going to be Red Hat Universal Base Image but had too many issues with that and Python and other silly things...
 2) Exposes SSH on port 2222, this way you can run it on Red Hat OpenShift
-3) Batch users are created, prefixed by student-userXX where XX is replaced by 0-100.  Details in the user-list.txt file.
+3) Batch users are created, prefixed by student-userXX where XX is replaced by 0-100.  Details in the ```user-list.txt``` file, user configuration executed by ```batch-user-config.sh```.
 4) Packages installed...
-  - wget, curl, unzip
+  - wget, curl, unzip, ed
   - nano, vim, git
   - openssh, openssh-server, openssh-server-sysvinit
   - nodejs 10, npm
