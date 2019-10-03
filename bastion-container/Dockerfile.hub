@@ -35,7 +35,7 @@ RUN adduser --system -s /bin/bash -u 1234321 -g 0 ossh && \
     mkdir -p /home/ossh && \
     chown ossh /home/ossh && \
     chmod 777 /home/ossh && \
-    mkdir /var/run/sshd && \
+    mkdir -p /var/run/sshd && \
     chmod 777 /var/run/sshd && \
     mkdir -p /var/lock/subsys && \
     touch /var/lock/subsys/sshd && \
