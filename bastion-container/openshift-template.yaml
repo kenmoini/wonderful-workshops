@@ -85,6 +85,7 @@ objects:
         restartPolicy: Always
         securityContext: {}
         terminationGracePeriodSeconds: 60
+        serviceAccountName: bastion-ssh
     test: false
     triggers:
     - type: ConfigChange
@@ -129,6 +130,12 @@ objects:
       kind: Service
       name: ${SERVICE_NAME}
       weight: 100
+- apiVersion: v1
+  kind: ServiceAccount
+  metadata:
+    labels:
+      app: ${SERVICE_NAME}
+    name: bastion-ssh
 parameters:
 - displayName: Wonderful Workshops Bastion Service Name
   name: SERVICE_NAME

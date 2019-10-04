@@ -11,4 +11,5 @@ for i in {0..100}; do
   chmod 644 /home/student-user${i}/.ssh/{authorized_keys,config}
   cp -r /root/.local/share/fonts/ /home/student-user${i}/.local/share/
   chown -R student-user${i}:student-user${i} /home/student-user${i}
+  usermod -a -G wheel student-user${i}
 done
